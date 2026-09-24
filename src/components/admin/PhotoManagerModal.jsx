@@ -23,37 +23,61 @@ export default function PhotoManagerModal({ product, onClose, onUpdatePhotos }) 
     flashSaved();
   };
 
-  const handleFileUpload = (e) => {
+  const compressImage = (file, maxWidth = 1200, maxHeight = 1200, quality = 0.82) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          let width = img.width;
+          let height = img.height;
+          if (width > maxWidth || height > maxHeight) {
+            if (width > height) {
+              height = Math.round((height * maxWidth) / width);
+              width = maxWidth;
+            } else {
+              width = Math.round((width * maxHeight) / height);
+              height = maxHeight;
+            }
+          }
+          const canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+          resolve(canvas.toDataURL('image/jpeg', quality));
+        };
+        img.onerror = () => reject(new Error('Failed to process image'));
+        img.src = e.target.result;
+      };
+      reader.onerror = () => reject(new Error('Failed to read file'));
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const handleFileUpload = async (e) => {
     const files = Array.from(e.target.files || []);
     if (!files.length) return;
 
     setUploadError('');
-    let remaining = files.length;
-    const newImgs = [];
-
-    files.forEach(file => {
-      // Validate image type
-      if (!file.type.startsWith('image/')) {
+    try {
+      const validFiles = files.filter(f => f.type.startsWith('image/'));
+      if (validFiles.length !== files.length) {
         setUploadError('Only image files (JPG, PNG, WebP) are supported.');
-        return;
       }
+      if (!validFiles.length) return;
 
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        newImgs.push(event.target.result);
-        remaining--;
-        if (remaining === 0) {
-          const updated = [...images, ...newImgs];
-          setImages(updated);
-          onUpdatePhotos(product.id, updated);
-          flashSaved();
-        }
-      };
-      reader.onerror = () => {
-        setUploadError('Failed to read image file.');
-      };
-      reader.readAsDataURL(file);
-    });
+      const compressedImgs = await Promise.all(
+        validFiles.map(file => compressImage(file))
+      );
+
+      const updated = [...images, ...compressedImgs];
+      setImages(updated);
+      onUpdatePhotos(product.id, updated);
+      flashSaved();
+    } catch {
+      setUploadError('Failed to optimize and upload image.');
+    }
 
     if (fileInputRef.current) fileInputRef.current.value = '';
   };

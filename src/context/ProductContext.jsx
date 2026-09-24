@@ -1,5 +1,6 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { SEED_PRODUCTS, STORAGE_KEY, ADMIN_STORAGE_KEY, SOLD_OUT_STORAGE_KEY, DEFAULT_SALE_END } from '../data/products';
+import { fetchLiveStoreData } from '../services/backendSync';
 
 const ProductContext = createContext(null);
 
@@ -47,8 +48,59 @@ export function ProductProvider({ children }) {
   });
 
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isBackendSynced, setIsBackendSynced] = useState(false);
+  const [lastSyncedAt, setLastSyncedAt] = useState(null);
+  const [syncError, setSyncError] = useState(null);
 
-  // Persist products whenever they change
+  // Fetch live store data from backend on mount
+  const refreshFromBackend = useCallback(async () => {
+    try {
+      setSyncError(null);
+      const liveData = await fetchLiveStoreData();
+      if (liveData && Array.isArray(liveData.products) && liveData.products.length > 0) {
+        // Merge with seed metadata if any field is missing
+        const liveProducts = liveData.products.map(p => {
+          const seed = SEED_PRODUCTS.find(s => s.id === p.id);
+          if (!seed) return p;
+          const images = (p.images && p.images.length > 0) ? p.images : seed.images;
+          return {
+            ...seed,
+            ...p,
+            images,
+          };
+        });
+
+        setProducts(liveProducts);
+        if (liveData.saleEndDate) {
+          setSaleEndDate(liveData.saleEndDate);
+        }
+        if (typeof liveData.showSoldOutWhenZero === 'boolean') {
+          setShowSoldOutWhenZero(liveData.showSoldOutWhenZero);
+        }
+
+        setIsBackendSynced(true);
+        setLastSyncedAt(new Date());
+
+        // Cache into localStorage
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(liveProducts));
+          if (liveData.saleEndDate) localStorage.setItem(ADMIN_STORAGE_KEY, liveData.saleEndDate);
+          if (typeof liveData.showSoldOutWhenZero === 'boolean') {
+            localStorage.setItem(SOLD_OUT_STORAGE_KEY, JSON.stringify(liveData.showSoldOutWhenZero));
+          }
+        } catch {}
+      }
+    } catch (err) {
+      console.warn('Backend sync failed, using cached/seed catalog:', err);
+      setSyncError(err.message);
+    }
+  }, []);
+
+  useEffect(() => {
+    refreshFromBackend();
+  }, [refreshFromBackend]);
+
+  // Persist products whenever they change locally
   useEffect(() => {
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(products)); } catch {}
   }, [products]);
@@ -89,6 +141,10 @@ export function ProductProvider({ children }) {
       setShowSoldOutWhenZero,
       isAdmin,
       setIsAdmin,
+      isBackendSynced,
+      lastSyncedAt,
+      syncError,
+      refreshFromBackend,
     }}>
       {children}
     </ProductContext.Provider>

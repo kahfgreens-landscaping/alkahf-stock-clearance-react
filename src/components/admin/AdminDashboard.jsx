@@ -2,11 +2,14 @@ import { useState, useRef } from 'react';
 import {
   X, Save, RotateCcw, Download, ChevronUp, ChevronDown,
   ToggleLeft, ToggleRight, Calendar, Package, Tag,
-  CheckCircle2, AlertTriangle, Search, Camera, Ban
+  CheckCircle2, AlertTriangle, Search, Camera, Ban,
+  Cloud, CloudOff, Settings, RefreshCw
 } from 'lucide-react';
 import { useProducts } from '../../context/ProductContext';
 import { SEED_PRODUCTS } from '../../data/products';
 import PhotoManagerModal from './PhotoManagerModal';
+import CloudSyncModal from './CloudSyncModal';
+import { getBackendToken, publishLiveProducts } from '../../services/backendSync';
 
 export default function AdminDashboard({ onClose }) {
   const {
@@ -17,7 +20,9 @@ export default function AdminDashboard({ onClose }) {
     saleEndDate,
     setSaleEndDate,
     showSoldOutWhenZero,
-    setShowSoldOutWhenZero
+    setShowSoldOutWhenZero,
+    refreshFromBackend,
+    isBackendSynced,
   } = useProducts();
 
   const [search, setSearch] = useState('');
@@ -27,6 +32,10 @@ export default function AdminDashboard({ onClose }) {
   const [editing, setEditing] = useState({}); // { productId_field: value }
   const [localSaleEnd, setLocalSaleEnd] = useState(saleEndDate.slice(0, 16)); // datetime-local format
   const [photoManagerProduct, setPhotoManagerProduct] = useState(null);
+  const [cloudToken, setCloudToken] = useState(() => getBackendToken());
+  const [showCloudModal, setShowCloudModal] = useState(false);
+  const [isPublishing, setIsPublishing] = useState(false);
+  const [publishFeedback, setPublishFeedback] = useState(null);
   const tableRef = useRef(null);
 
   // ── Helpers ─────────────────────────────────────
@@ -72,10 +81,49 @@ export default function AdminDashboard({ onClose }) {
     });
 
   // ── Save ─────────────────────────────────────────
-  const handleSave = () => {
-    setSaleEndDate(localSaleEnd + ':00');
-    setSaved(true);
-    setTimeout(() => setSaved(false), 2500);
+  const handleSave = async () => {
+    const updatedEnd = localSaleEnd.length === 16 ? localSaleEnd + ':00' : localSaleEnd;
+    setSaleEndDate(updatedEnd);
+
+    const token = (cloudToken || getBackendToken()).trim();
+    if (token) {
+      setIsPublishing(true);
+      setPublishFeedback(null);
+      try {
+        await publishLiveProducts({
+          products,
+          saleEndDate: updatedEnd,
+          showSoldOutWhenZero
+        }, token);
+
+        setSaved(true);
+        setPublishFeedback({
+          success: true,
+          message: 'Published to live GitHub backend! All devices will see these changes.'
+        });
+        setTimeout(() => setSaved(false), 3000);
+        setTimeout(() => setPublishFeedback(null), 6000);
+      } catch (err) {
+        console.error('Publish error:', err);
+        setSaved(true);
+        setPublishFeedback({
+          success: false,
+          message: `Saved locally, but live backend sync failed: ${err.message}`
+        });
+        setTimeout(() => setPublishFeedback(null), 8000);
+      } finally {
+        setIsPublishing(false);
+      }
+    } else {
+      setSaved(true);
+      setTimeout(() => setSaved(false), 2500);
+      setPublishFeedback({
+        success: false,
+        isNotice: true,
+        message: 'Saved locally in this browser. To save to the backend for all visitors, click "Connect Backend".'
+      });
+      setTimeout(() => setPublishFeedback(null), 6000);
+    }
   };
 
   // ── Reset ────────────────────────────────────────
@@ -114,16 +162,56 @@ export default function AdminDashboard({ onClose }) {
               <Package size={20} className="text-green-600" />
               Admin Control Panel
             </h2>
-            <p className="text-xs text-gray-400 mt-0.5">Changes save to browser storage and update the storefront instantly</p>
+            <p className="text-xs text-gray-400 mt-0.5">
+              Live Backend: <span className="font-semibold text-gray-600">kahfgreens-landscaping/alkahf-stock-clearance-react</span>
+            </p>
           </div>
           <div className="flex items-center gap-2">
+            {/* Backend Sync Button / Pill */}
+            {cloudToken ? (
+              <button
+                type="button"
+                onClick={() => setShowCloudModal(true)}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-300 hover:bg-emerald-100 transition-colors shadow-xs"
+                title="Cloud Backend Connected - Click to configure"
+              >
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <Cloud size={14} className="text-emerald-700" />
+                <span className="hidden sm:inline">Backend Synced</span>
+                <Settings size={12} className="text-emerald-600 ml-0.5" />
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={() => setShowCloudModal(true)}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-amber-50 text-amber-800 border border-amber-300 hover:bg-amber-100 transition-colors animate-pulse shadow-xs"
+                title="Click to connect GitHub backend so changes appear on all devices"
+              >
+                <CloudOff size={14} className="text-amber-600" />
+                <span className="hidden sm:inline">Connect Backend</span>
+                <Settings size={12} className="text-amber-600 ml-0.5" />
+              </button>
+            )}
+
             {saved && (
               <span className="flex items-center gap-1.5 text-green-600 text-sm font-semibold animate-pulse">
                 <CheckCircle2 size={16} /> Saved!
               </span>
             )}
-            <button onClick={handleSave} className="flex items-center gap-1.5 bg-green-700 hover:bg-green-800 text-white text-sm font-bold px-4 py-2 rounded-xl transition-all hover:shadow-lg active:scale-95">
-              <Save size={15} /> Save All
+            <button
+              onClick={handleSave}
+              disabled={isPublishing}
+              className="flex items-center gap-1.5 bg-green-700 hover:bg-green-800 text-white text-sm font-bold px-4 py-2 rounded-xl transition-all hover:shadow-lg active:scale-95 disabled:opacity-60"
+            >
+              {isPublishing ? (
+                <>
+                  <RefreshCw size={15} className="animate-spin" /> Publishing...
+                </>
+              ) : (
+                <>
+                  <Save size={15} /> Save & Publish Live
+                </>
+              )}
             </button>
             <button onClick={handleExport} className="flex items-center gap-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-semibold px-3 py-2 rounded-xl transition-all">
               <Download size={15} /> CSV
@@ -136,6 +224,31 @@ export default function AdminDashboard({ onClose }) {
             </button>
           </div>
         </div>
+
+        {/* ── Publish Feedback Banner ─────────────── */}
+        {publishFeedback && (
+          <div className={`px-6 py-2.5 text-xs flex items-center justify-between font-semibold ${
+            publishFeedback.success
+              ? 'bg-emerald-600 text-white'
+              : publishFeedback.isNotice
+              ? 'bg-amber-500 text-white'
+              : 'bg-red-600 text-white'
+          }`}>
+            <span className="flex items-center gap-2">
+              {publishFeedback.success ? <CheckCircle2 size={16} /> : <AlertTriangle size={16} />}
+              {publishFeedback.message}
+            </span>
+            {publishFeedback.isNotice && !cloudToken && (
+              <button
+                type="button"
+                onClick={() => setShowCloudModal(true)}
+                className="underline font-bold hover:text-amber-100 ml-3 bg-white/20 px-2 py-0.5 rounded"
+              >
+                Connect Cloud Backend Now →
+              </button>
+            )}
+          </div>
+        )}
 
         {/* ── Summary Cards ──────────────────────── */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 px-6 py-4 flex-shrink-0 border-b border-gray-50">
@@ -376,9 +489,33 @@ export default function AdminDashboard({ onClose }) {
 
         {/* ── Footer ──────────────────────────────── */}
         <div className="px-6 py-3 border-t border-gray-100 flex items-center justify-between bg-gray-50/50 flex-shrink-0">
-          <span className="text-xs text-gray-400">Data stored in browser localStorage · No backend required</span>
-          <button onClick={handleSave} className="flex items-center gap-1.5 bg-green-700 hover:bg-green-800 text-white text-sm font-bold px-5 py-2 rounded-xl transition-all hover:shadow-md active:scale-95">
-            <Save size={14} /> Save All Changes
+          <div className="flex items-center gap-2 text-xs text-gray-500">
+            {cloudToken ? (
+              <span className="flex items-center gap-1.5 text-emerald-700 font-semibold">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                Connected to GitHub Live Backend
+              </span>
+            ) : (
+              <span className="flex items-center gap-1.5 text-amber-700 font-medium">
+                <CloudOff size={13} className="text-amber-500" />
+                Local storage only · Click "Connect Backend" in header to sync live
+              </span>
+            )}
+          </div>
+          <button
+            onClick={handleSave}
+            disabled={isPublishing}
+            className="flex items-center gap-1.5 bg-green-700 hover:bg-green-800 text-white text-sm font-bold px-5 py-2 rounded-xl transition-all hover:shadow-md active:scale-95 disabled:opacity-60"
+          >
+            {isPublishing ? (
+              <>
+                <RefreshCw size={14} className="animate-spin" /> Publishing to Cloud...
+              </>
+            ) : (
+              <>
+                <Save size={14} /> Save & Publish Live
+              </>
+            )}
           </button>
         </div>
       </div>
@@ -393,6 +530,13 @@ export default function AdminDashboard({ onClose }) {
           }}
         />
       )}
+
+      {/* ── Cloud Backend Sync Modal ─────────────────── */}
+      <CloudSyncModal
+        isOpen={showCloudModal}
+        onClose={() => setShowCloudModal(false)}
+        onTokenSaved={(t) => setCloudToken(t)}
+      />
     </div>
   );
 }
