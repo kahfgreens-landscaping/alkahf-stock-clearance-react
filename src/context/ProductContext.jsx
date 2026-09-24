@@ -9,13 +9,23 @@ export function ProductProvider({ children }) {
       const saved = localStorage.getItem(STORAGE_KEY) || localStorage.getItem('kahf_kreens_products');
       if (saved) {
         const parsed = JSON.parse(saved);
-        // Merge any new seed products not yet in storage
         const savedIds = new Set(parsed.map(p => p.id));
-        const merged = [
-          ...parsed,
+        const merged = parsed.map(p => {
+          const seed = SEED_PRODUCTS.find(s => s.id === p.id);
+          if (!seed) return p;
+          const useImages = (!p.images || p.images.length === 0 || p.images.length < seed.images.length)
+            ? seed.images
+            : p.images;
+          return {
+            ...seed,
+            ...p,
+            images: useImages,
+          };
+        });
+        return [
+          ...merged,
           ...SEED_PRODUCTS.filter(p => !savedIds.has(p.id)),
         ];
-        return merged;
       }
     } catch {}
     return SEED_PRODUCTS;
