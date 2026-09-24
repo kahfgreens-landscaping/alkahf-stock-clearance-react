@@ -62,7 +62,7 @@ export async function fetchLiveStoreData() {
     // 2. Direct GitHub API raw content (0 CDN delay, 60 req/hr per IP unauth)
     `https://api.github.com/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/contents/${GITHUB_FILE_PATH}`,
     // 3. GitHub Pages local deploy fallback
-    `${import.meta.env.BASE_URL}products-live.json?t=${Date.now()}`
+    `${(typeof import.meta !== 'undefined' && import.meta.env?.BASE_URL) || '/'}products-live.json?t=${Date.now()}`
   ];
 
   for (let i = 0; i < endpoints.length; i++) {
