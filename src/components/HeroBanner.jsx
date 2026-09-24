@@ -31,11 +31,6 @@ export default function HeroBanner() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
           <div className="flex flex-col items-center text-center gap-5">
 
-            {/* Logo */}
-            <div className="bg-white rounded-2xl px-6 py-3 shadow-xl">
-              <img src={`${BASE}company_logo.png`} alt="KAHF KREENS" className="h-14 w-auto" />
-            </div>
-
             {/* Sale badge */}
             <div className="flex items-center gap-2 bg-red-500 text-white text-sm font-black px-5 py-2 rounded-full shadow-lg uppercase tracking-widest">
               <Tag size={16} />
@@ -46,7 +41,7 @@ export default function HeroBanner() {
             {/* Headline */}
             <div>
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight">
-                KAHF <span className="text-yellow-400">KREENS</span>
+                KAHF <span className="text-yellow-400">GREENS</span>
               </h1>
               <p className="mt-2 text-emerald-50 text-lg sm:text-xl font-semibold tracking-wide">
                 Premium Landscaping & Garden Products
@@ -82,7 +77,7 @@ export default function HeroBanner() {
             {/* CTA buttons */}
             <div className="flex flex-col sm:flex-row gap-3 w-full max-w-md">
               <a
-                href="https://wa.me/971588163730?text=Hello%20KAHF%20KREENS%2C%20I%20am%20interested%20in%20the%20stock%20clearance%20products!"
+                href="https://wa.me/971588163730?text=Hello%20KAHF%20GREENS%2C%20I%20am%20interested%20in%20the%20stock%20clearance%20products!"
                 target="_blank" rel="noopener noreferrer"
                 className="flex-1 flex items-center justify-center gap-2 bg-[#25d366] hover:bg-[#1ebc57] text-white font-bold py-3.5 rounded-xl shadow-lg transition-all hover:scale-105 active:scale-95"
               >

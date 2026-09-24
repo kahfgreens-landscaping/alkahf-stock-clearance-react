@@ -14,7 +14,7 @@ export default function ImageCarousel({ images, productName }) {
     return (
       <div className="w-full h-52 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center rounded-xl">
         <div className="text-center p-4">
-          <img src={PLACEHOLDER} alt="KAHF KREENS" className="h-12 w-auto mx-auto opacity-40 mb-2" />
+          <img src={PLACEHOLDER} alt="KAHF GREENS" className="h-12 w-auto mx-auto opacity-40 mb-2" />
           <p className="text-gray-400 text-xs">{productName}</p>
         </div>
       </div>
@@ -26,7 +26,7 @@ export default function ImageCarousel({ images, productName }) {
     return (
       <div className="w-full h-52 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center rounded-xl">
         <div className="text-center p-4">
-          <img src={PLACEHOLDER} alt="KAHF KREENS" className="h-12 w-auto mx-auto opacity-40 mb-2" />
+          <img src={PLACEHOLDER} alt="KAHF GREENS" className="h-12 w-auto mx-auto opacity-40 mb-2" />
           <p className="text-gray-400 text-xs">Image unavailable</p>
         </div>
       </div>

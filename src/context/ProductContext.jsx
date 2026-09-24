@@ -6,7 +6,7 @@ const ProductContext = createContext(null);
 export function ProductProvider({ children }) {
   const [products, setProducts] = useState(() => {
     try {
-      const saved = localStorage.getItem(STORAGE_KEY);
+      const saved = localStorage.getItem(STORAGE_KEY) || localStorage.getItem('kahf_kreens_products');
       if (saved) {
         const parsed = JSON.parse(saved);
         // Merge any new seed products not yet in storage
@@ -23,7 +23,7 @@ export function ProductProvider({ children }) {
 
   const [saleEndDate, setSaleEndDate] = useState(() => {
     try {
-      return localStorage.getItem(ADMIN_STORAGE_KEY) || DEFAULT_SALE_END;
+      return localStorage.getItem(ADMIN_STORAGE_KEY) || localStorage.getItem('kahf_kreens_sale_end') || DEFAULT_SALE_END;
     } catch {}
     return DEFAULT_SALE_END;
   });

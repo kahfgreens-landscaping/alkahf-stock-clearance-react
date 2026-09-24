@@ -83,7 +83,7 @@ export default function AdminDashboard({ onClose }) {
     const blob = new Blob([csv], { type: 'text/csv' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url; a.download = 'kahf-kreens-products.csv'; a.click();
+    a.href = url; a.download = 'kahf-greens-products.csv'; a.click();
     URL.revokeObjectURL(url);
   };
 

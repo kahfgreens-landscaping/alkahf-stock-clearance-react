@@ -18,9 +18,9 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="bg-white rounded-xl p-3 inline-block mb-4 shadow-lg">
-              <img src={`${BASE}company_logo.png`} alt="KAHF KREENS" className="h-12 w-auto" />
+              <img src={`${BASE}company_logo.png`} alt="KAHF GREENS" className="h-12 w-auto" />
             </div>
-            <h3 className="text-xl font-extrabold mb-1">KAHF KREENS</h3>
+            <h3 className="text-xl font-extrabold mb-1">KAHF GREENS</h3>
             <p className="text-green-200/70 text-sm leading-relaxed">
               Premium landscaping and garden products at unbeatable clearance prices. While stocks last!
             </p>
@@ -34,7 +34,7 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-green-200 uppercase text-xs tracking-widest mb-4">Get In Touch</h4>
             <div className="space-y-3">
-              <a href="https://wa.me/971588163730?text=Hello%20KAHF%20KREENS!" target="_blank" rel="noopener noreferrer"
+              <a href="https://wa.me/971588163730?text=Hello%20KAHF%20GREENS!" target="_blank" rel="noopener noreferrer"
                 className="flex items-center gap-3 bg-[#25d366] hover:bg-[#1ebc57] px-4 py-3 rounded-xl font-bold text-sm transition-all hover:scale-105 active:scale-95 shadow-md">
                 <MessageCircle size={18} />
                 WhatsApp Us Now
@@ -63,7 +63,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="border-t border-white/10 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-green-200/40">
-          <span>© 2026 KAHF KREENS. All rights reserved.</span>
+          <span>© 2026 KAHF GREENS. All rights reserved.</span>
           <span className="flex items-center gap-1">
             🌿 Dubai, UAE · All prices in AED · While stocks last
           </span>

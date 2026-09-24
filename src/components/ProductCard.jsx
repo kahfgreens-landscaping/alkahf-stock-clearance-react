@@ -19,7 +19,7 @@ export default function ProductCard({ product }) {
   const outOfStock = qty === 0;
 
   const waMsg = encodeURIComponent(
-    `Hello KAHF KREENS! 🌿\nI'm interested in:\n*${name}*\nSale Price: AED ${salePrice}\n\nPlease advise on availability and bulk pricing.`
+    `Hello KAHF GREENS! 🌿\nI'm interested in:\n*${name}*\nSale Price: AED ${salePrice}\n\nPlease advise on availability and bulk pricing.`
   );
 
   return (

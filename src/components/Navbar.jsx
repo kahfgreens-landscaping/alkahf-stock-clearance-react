@@ -18,9 +18,9 @@ export default function Navbar({ activeCategory, onCategoryChange, onAdminClick 
 
           {/* Logo + Brand */}
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => onCategoryChange('all')}>
-            <img src={`${BASE}company_logo.png`} alt="KAHF KREENS" className="h-10 w-auto" />
+            <img src={`${BASE}company_logo.png`} alt="KAHF GREENS" className="h-10 w-auto" />
             <div className="hidden sm:block">
-              <div className="font-extrabold text-green-800 text-lg leading-tight tracking-tight">KAHF KREENS</div>
+              <div className="font-extrabold text-green-800 text-lg leading-tight tracking-tight">KAHF GREENS</div>
               <div className="text-xs text-green-600 font-medium tracking-wider">PLANTING · GROWING · SAVING</div>
             </div>
           </div>
@@ -62,7 +62,7 @@ export default function Navbar({ activeCategory, onCategoryChange, onAdminClick 
 
             {/* WhatsApp */}
             <a
-              href="https://wa.me/971588163730?text=Hello%20KAHF%20KREENS%2C%20I%20am%20interested%20in%20your%20Stock%20Clearance%20products."
+              href="https://wa.me/971588163730?text=Hello%20KAHF%20GREENS%2C%20I%20am%20interested%20in%20your%20Stock%20Clearance%20products."
               target="_blank" rel="noopener noreferrer"
               className="flex items-center gap-1.5 bg-[#25d366] text-white px-3 py-1.5 rounded-full text-xs font-bold hover:bg-[#1ebc57] transition-colors shadow-sm"
             >

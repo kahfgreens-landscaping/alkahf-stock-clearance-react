@@ -1,4 +1,4 @@
-// KAHF KREENS – All 76 clearance products seed data
+// KAHF GREENS – All 76 clearance products seed data
 export const SEED_PRODUCTS = [
   // ── Chain Lock Tie ───────────────────────────────
   { id: 1, category: "Chain Lock Tie", name: "Chain Lock Tie 2.5cm × 30m × 2.5mm HDPE", size: "2.5cm × 30m", color: null, weight: null, material: "HDPE", qty: 45, salePrice: 60, wasPrice: 150, images: ["images/Chain Lock 1.png", "images/Chain Lock 2.jpg", "images/Chain Lock 3.jpg"], desc: "Heavy-duty HDPE chain lock tie for securing plants, climbing frames and garden structures.", visible: true },
@@ -101,6 +101,6 @@ export const SEED_PRODUCTS = [
 
 export const CATEGORIES = [...new Set(SEED_PRODUCTS.map(p => p.category))];
 
-export const STORAGE_KEY = 'kahf_kreens_products';
-export const ADMIN_STORAGE_KEY = 'kahf_kreens_sale_end';
+export const STORAGE_KEY = 'kahf_greens_products';
+export const ADMIN_STORAGE_KEY = 'kahf_greens_sale_end';
 export const DEFAULT_SALE_END = '2026-10-30T23:59:59';
