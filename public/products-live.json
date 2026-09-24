@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-24T10:17:55.291Z",
+  "updatedAt": "2026-09-24T10:18:22.232Z",
   "saleEndDate": "2026-10-30T23:59:00",
   "showSoldOutWhenZero": true,
   "products": [
@@ -12,7 +12,7 @@
       "color": null,
       "weight": null,
       "material": "HDPE",
-      "qty": 44,
+      "qty": 45,
       "salePrice": 60,
       "wasPrice": 150,
       "images": [
