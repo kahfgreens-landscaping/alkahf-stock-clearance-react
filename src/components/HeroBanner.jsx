@@ -21,20 +21,13 @@ export default function HeroBanner() {
           style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '30px 30px' }}
         />
 
-        {/* Floating badge */}
-        <div className="absolute top-4 right-4 sm:top-6 sm:right-8">
-          <div className="animate-bounce bg-red-500 text-white text-xs font-black px-3 py-1.5 rounded-full shadow-lg rotate-12 select-none">
-            🔥 HOT DEALS!
-          </div>
-        </div>
-
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
           <div className="flex flex-col items-center text-center gap-5">
 
             {/* Sale badge */}
             <div className="flex items-center gap-2 bg-red-500 text-white text-sm font-black px-5 py-2 rounded-full shadow-lg uppercase tracking-widest">
               <Tag size={16} />
-              Trading Closing Down Sale
+              Clearance Sale
               <Tag size={16} />
             </div>
 
