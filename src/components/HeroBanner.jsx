@@ -28,8 +28,8 @@ export default function HeroBanner() {
           </div>
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
-          <div className="flex flex-col items-center text-center gap-6">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
+          <div className="flex flex-col items-center text-center gap-5">
 
             {/* Logo */}
             <div className="bg-white rounded-2xl px-6 py-3 shadow-xl">
@@ -48,10 +48,10 @@ export default function HeroBanner() {
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight">
                 KAHF <span className="text-yellow-400">KREENS</span>
               </h1>
-              <p className="mt-2 text-green-200 text-lg sm:text-xl font-medium">
+              <p className="mt-2 text-emerald-50 text-lg sm:text-xl font-semibold tracking-wide">
                 Premium Landscaping & Garden Products
               </p>
-              <p className="mt-1 text-green-100/80 text-sm sm:text-base max-w-xl mx-auto">
+              <p className="mt-1 text-emerald-100/90 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
                 Everything must go! Stock clearance at unbeatable prices. Limited quantities — first come, first served.
               </p>
             </div>
@@ -90,29 +90,29 @@ export default function HeroBanner() {
               </a>
               <a
                 href="tel:+971588163730"
-                className="flex-1 flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 border border-white/30 text-white font-bold py-3.5 rounded-xl transition-all hover:scale-105 active:scale-95"
+                className="flex-1 flex items-center justify-center gap-2 bg-white text-green-900 font-extrabold py-3.5 rounded-xl shadow-lg transition-all hover:scale-105 active:scale-95 hover:bg-green-50"
               >
                 <Phone size={20} /> +971 58 8163730
               </a>
             </div>
 
             {/* Trust row */}
-            <div className="flex flex-wrap items-center justify-center gap-4 text-green-200/70 text-xs">
-              <span>✅ Genuine Products</span>
-              <span>·</span>
-              <span>📦 Bulk Pricing Available</span>
-              <span>·</span>
-              <span>🚚 Dubai Based</span>
-              <span>·</span>
-              <span>⚡ Instant WhatsApp Response</span>
+            <div className="flex flex-wrap items-center justify-center gap-3 rounded-2xl border border-white/30 bg-black/30 px-5 py-3 backdrop-blur-sm">
+              <span className="text-xs font-bold text-white drop-shadow">✅ Genuine Products</span>
+              <span className="text-white/60">·</span>
+              <span className="text-xs font-bold text-white drop-shadow">📦 Bulk Pricing Available</span>
+              <span className="text-white/60">·</span>
+              <span className="text-xs font-bold text-white drop-shadow">🚚 Dubai Based</span>
+              <span className="text-white/60">·</span>
+              <span className="text-xs font-bold text-white drop-shadow">⚡ Instant WhatsApp Response</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* Wave divider */}
-      <div className="bg-gray-50 overflow-hidden" style={{ marginTop: '-1px' }}>
-        <svg viewBox="0 0 1440 60" className="w-full text-green-800 fill-current" style={{ display: 'block', transform: 'translateY(-99%)' }}>
+      <div className="bg-gray-50 overflow-hidden -mt-px">
+        <svg viewBox="0 0 1440 60" className="w-full text-green-800 fill-current block -translate-y-[99%]" aria-hidden="true">
           <path d="M0,60 C240,0 480,60 720,30 C960,0 1200,60 1440,30 L1440,60 Z" />
         </svg>
       </div>
@@ -124,7 +124,7 @@ function Stat({ num, label }) {
   return (
     <div className="text-center">
       <div className="text-2xl sm:text-3xl font-extrabold text-yellow-400">{num}</div>
-      <div className="text-green-200/70 text-xs uppercase tracking-wider">{label}</div>
+      <div className="text-emerald-50/80 text-xs uppercase tracking-wider">{label}</div>
     </div>
   );
 }
