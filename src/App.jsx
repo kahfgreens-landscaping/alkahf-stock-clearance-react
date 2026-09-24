@@ -7,12 +7,14 @@ import ProductGrid from './components/ProductGrid';
 import Footer from './components/Footer';
 import AdminLogin from './components/admin/AdminLogin';
 import AdminDashboard from './components/admin/AdminDashboard';
+import QrModal from './components/QrModal';
 
 export default function App() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [search, setSearch] = useState('');
   const [showAdminLogin, setShowAdminLogin] = useState(false);
   const [showAdminDashboard, setShowAdminDashboard] = useState(false);
+  const [showQrModal, setShowQrModal] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const handleAdminClick = () => {
@@ -45,6 +47,7 @@ export default function App() {
           activeCategory={activeCategory}
           onCategoryChange={handleCategoryChange}
           onAdminClick={handleAdminClick}
+          onQrClick={() => setShowQrModal(true)}
         />
         <HeroBanner />
 
@@ -59,6 +62,11 @@ export default function App() {
         </div>
 
         <Footer />
+
+        {/* QR Code modal */}
+        {showQrModal && (
+          <QrModal onClose={() => setShowQrModal(false)} />
+        )}
 
         {/* Admin modals */}
         {showAdminLogin && (

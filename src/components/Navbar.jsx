@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { Menu, X, ShoppingBag, Lock, Phone, MessageCircle, ChevronDown } from 'lucide-react';
+import { Menu, X, ShoppingBag, Lock, Phone, MessageCircle, ChevronDown, QrCode } from 'lucide-react';
 import { CATEGORIES } from '../data/products';
 import { useProducts } from '../context/ProductContext';
 
 const BASE = import.meta.env.BASE_URL;
 
-export default function Navbar({ activeCategory, onCategoryChange, onAdminClick }) {
+export default function Navbar({ activeCategory, onCategoryChange, onAdminClick, onQrClick }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [catOpen, setCatOpen] = useState(false);
   const { products } = useProducts();
@@ -59,6 +59,16 @@ export default function Navbar({ activeCategory, onCategoryChange, onAdminClick 
               <ShoppingBag size={14} className="text-green-600" />
               <span className="text-xs font-semibold text-green-700">{totalQty.toLocaleString()} units</span>
             </div>
+
+            {/* QR Code */}
+            <button
+              onClick={onQrClick}
+              className="flex items-center gap-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 px-2.5 py-1.5 rounded-full text-xs font-semibold transition-colors shadow-2xs"
+              title="View & Download QR Code"
+            >
+              <QrCode size={14} className="text-green-700" />
+              <span className="hidden lg:inline">QR Code</span>
+            </button>
 
             {/* WhatsApp */}
             <a
