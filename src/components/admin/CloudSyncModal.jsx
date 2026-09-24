@@ -197,6 +197,35 @@ export default function CloudSyncModal({ isOpen, onClose, onTokenSaved }) {
             </div>
           )}
 
+          {/* Quick Token Generation / 403 Troubleshooting Box */}
+          <div className="bg-amber-50/90 border border-amber-200/90 rounded-xl p-3.5 text-xs space-y-2">
+            <div className="flex items-center justify-between gap-2 flex-wrap">
+              <span className="font-bold text-amber-950 flex items-center gap-1.5 text-xs">
+                🔑 Need a token or got Error 403?
+              </span>
+              <a
+                href="https://github.com/settings/tokens/new?description=Kahf+Greens+Clearance+Admin&scopes=repo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 bg-amber-700 hover:bg-amber-800 text-white font-bold px-3 py-1.5 rounded-lg text-xs shadow-xs transition-all hover:scale-102"
+              >
+                <span>Generate Token (Pre-Selected)</span>
+                <ExternalLink size={12} />
+              </a>
+            </div>
+            <p className="text-[11px] text-amber-900 leading-relaxed">
+              <strong>Why HTTP 403 happens:</strong> Your token is missing write permissions for repository contents.
+            </p>
+            <ul className="text-[11px] text-amber-900/90 space-y-1 list-disc pl-4">
+              <li>
+                <strong>Classic Token (Recommended):</strong> Clicking the button above opens GitHub with the <code className="bg-amber-100 px-1 py-0.5 rounded font-mono font-bold text-amber-900">repo</code> scope pre-checked. Scroll to bottom, click <strong>Generate token</strong>, and paste it above.
+              </li>
+              <li>
+                <strong>Fine-Grained Token:</strong> Under <em>Repository permissions</em>, change <strong>Contents</strong> to <strong>Read and write</strong>, and make sure <code className="bg-amber-100 px-1 py-0.5 rounded font-mono text-amber-900">alkahf-stock-clearance-react</code> is selected.
+              </li>
+            </ul>
+          </div>
+
           {/* Instructions Box */}
           <div className="bg-emerald-50/50 border border-emerald-100 rounded-xl p-3 text-[11px] text-gray-600 space-y-1.5">
             <div className="font-bold text-emerald-950 flex items-center gap-1.5">
@@ -210,7 +239,7 @@ export default function CloudSyncModal({ isOpen, onClose, onTokenSaved }) {
               • Customers and visitors automatically load the latest prices, quantities, and photos from jsDelivr's global CDN in real-time.
             </p>
             <p className="text-gray-500">
-              💡 <em>To get a token, run <code className="bg-emerald-100/70 px-1 py-0.5 rounded text-emerald-800 font-mono">gh auth token</code> in your terminal, or generate one in GitHub Settings → Developer Settings → Personal Access Tokens with <strong>repo</strong> scope.</em>
+              💡 <em>Using GitHub CLI in terminal? Run <code className="bg-emerald-100/70 px-1 py-0.5 rounded text-emerald-800 font-mono">gh auth token</code> to get your active token instantly.</em>
             </p>
           </div>
         </div>

@@ -114,16 +114,52 @@ export async function testTokenConnection(token) {
     });
 
     if (res.status === 401) {
-      return { ok: false, error: 'Invalid token or token has expired' };
+      return { ok: false, error: 'Invalid token or token has expired. Please verify and re-enter.' };
     }
     if (res.status === 404) {
-      return { ok: false, error: `Repository ${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME} not found or token has no access` };
+      return { ok: false, error: `Repository ${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME} not found or token has no access to it. Make sure this repository is selected under "Repository access".` };
     }
     if (!res.ok) {
       return { ok: false, error: `GitHub error HTTP ${res.status}: ${res.statusText}` };
     }
 
     const data = await res.json();
+    const scopesHeader = res.headers.get('x-oauth-scopes');
+
+    // If it's a classic token (has x-oauth-scopes header)
+    if (scopesHeader !== null) {
+      const scopes = scopesHeader.split(',').map(s => s.trim().toLowerCase());
+      const hasRepoScope = scopes.includes('repo') || scopes.includes('public_repo');
+      if (!hasRepoScope) {
+        return {
+          ok: false,
+          error: 'Token is missing the "repo" scope. Classic tokens must have the "repo" or "public_repo" scope to commit changes.',
+          scopes: scopesHeader
+        };
+      }
+    }
+
+    // Also test reading the target file via GitHub Contents API with this token
+    const fileRes = await fetch(
+      `https://api.github.com/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/contents/${GITHUB_FILE_PATH}`,
+      {
+        headers: {
+          'Authorization': `Bearer ${cleanToken}`,
+          'Accept': 'application/vnd.github.v3+json',
+        },
+      }
+    );
+
+    if (fileRes.status === 403) {
+      const fileErr = await fileRes.json().catch(() => ({}));
+      return {
+        ok: false,
+        error: fileErr.message?.includes('Resource not accessible')
+          ? 'Token lacks "Contents: Read and write" permission for this repository. If using a Fine-Grained token, set "Contents" to "Read and write".'
+          : `HTTP 403: ${fileErr.message || 'Access forbidden'}`
+      };
+    }
+
     const canPush = Boolean(data.permissions?.push || data.permissions?.admin);
 
     return {
@@ -132,6 +168,7 @@ export async function testTokenConnection(token) {
       canPush,
       visibility: data.private ? 'Private' : 'Public',
       defaultBranch: data.default_branch,
+      isClassic: scopesHeader !== null,
     };
   } catch (err) {
     return { ok: false, error: err.message || 'Network error reaching GitHub' };
@@ -162,6 +199,15 @@ export async function publishLiveProducts({ products, saleEndDate, showSoldOutWh
   if (getRes.ok) {
     const fileData = await getRes.json();
     currentSha = fileData.sha;
+  } else if (getRes.status === 403) {
+    const errData = await getRes.json().catch(() => ({}));
+    if (errData.message?.includes('Resource not accessible')) {
+      throw new Error(
+        'Token lacks repository permission: "Contents: Read and write". ' +
+        'If using a Fine-grained token, enable Contents (Read & write). If using a Classic token, check the "repo" scope.'
+      );
+    }
+    throw new Error(`GitHub access forbidden (HTTP 403): ${errData.message || getRes.statusText}`);
   } else if (getRes.status !== 404) {
     const errData = await getRes.json().catch(() => ({}));
     throw new Error(`Failed to retrieve file info from GitHub (HTTP ${getRes.status}): ${errData.message || getRes.statusText}`);
@@ -200,6 +246,12 @@ export async function publishLiveProducts({ products, saleEndDate, showSoldOutWh
 
   if (!putRes.ok) {
     const putErr = await putRes.json().catch(() => ({}));
+    if (putRes.status === 403 && putErr.message?.includes('Resource not accessible')) {
+      throw new Error(
+        'Permission denied (HTTP 403): Token lacks "Contents: Read and write" access. ' +
+        'Please generate a Classic Token with "repo" scope or update your Fine-grained token to have "Contents: Read and write".'
+      );
+    }
     throw new Error(`Failed to commit changes to GitHub (HTTP ${putRes.status}): ${putErr.message || putRes.statusText}`);
   }
 
