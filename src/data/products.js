@@ -26,8 +26,8 @@ export const SEED_PRODUCTS = [
 
   // ── Irrigation ───────────────────────────────────
   { id: 17, category: "Irrigation", name: "Unispray Pop-Up Body 4\" with Check Valve", size: "4 inch", color: null, weight: null, material: null, qty: 800, salePrice: 7, wasPrice: 18, images: ["images/Unispray Pop-Up Body 4inch with Check Valve.avif"], desc: "Professional 4\" pop-up sprinkler body with built-in check valve.", visible: true },
-  { id: 18, category: "Irrigation", name: "Fog Nozzle ½\"", size: "½ inch", color: null, weight: null, material: null, qty: 150, salePrice: 6, wasPrice: 15, images: [], desc: "Fine-mist fogging nozzle for humidity control and plant misting systems.", visible: true },
-  { id: 19, category: "Irrigation", name: "Rain Nozzle ½\"", size: "½ inch", color: null, weight: null, material: null, qty: 299, salePrice: 6, wasPrice: 15, images: [], desc: "Rain-pattern irrigation nozzle for even water distribution.", visible: true },
+  { id: 18, category: "Irrigation", name: "Fog Nozzle ½\"", size: "½ inch", color: null, weight: null, material: null, qty: 150, salePrice: 6, wasPrice: 15, images: ["images/Fog Nozzle ½ inch.jpeg"], desc: "Fine-mist fogging nozzle for humidity control and plant misting systems.", visible: true },
+  { id: 19, category: "Irrigation", name: "Rain Nozzle ½\"", size: "½ inch", color: null, weight: null, material: null, qty: 299, salePrice: 6, wasPrice: 15, images: ["images/Rain Nozzle ½ inch.jpeg"], desc: "Rain-pattern irrigation nozzle for even water distribution.", visible: true },
 
   // ── Nursery Pots ─────────────────────────────────
   { id: 20, category: "Nursery Pots", name: "Desch Plastic Pot 15cm 1.5L – Black (Pack 5)", size: "15 cm / 1.5 L", color: "Black", weight: null, material: null, qty: 4777, salePrice: 0.10, wasPrice: 0.40, images: ["images/11, 13, 15cm - Front.jpg", "images/11cm - 13cm -  15cm - pots.jpg"], desc: "Standard black nursery pot 1.5 litre. Lightweight and durable for propagation.", visible: true },
@@ -103,4 +103,5 @@ export const CATEGORIES = [...new Set(SEED_PRODUCTS.map(p => p.category))];
 
 export const STORAGE_KEY = 'kahf_greens_products';
 export const ADMIN_STORAGE_KEY = 'kahf_greens_sale_end';
+export const SOLD_OUT_STORAGE_KEY = 'kahf_greens_sold_out_mode';
 export const DEFAULT_SALE_END = '2026-10-30T23:59:59';

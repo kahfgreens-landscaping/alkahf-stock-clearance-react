@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import { SEED_PRODUCTS, STORAGE_KEY, ADMIN_STORAGE_KEY, DEFAULT_SALE_END } from '../data/products';
+import { SEED_PRODUCTS, STORAGE_KEY, ADMIN_STORAGE_KEY, SOLD_OUT_STORAGE_KEY, DEFAULT_SALE_END } from '../data/products';
 
 const ProductContext = createContext(null);
 
@@ -38,6 +38,14 @@ export function ProductProvider({ children }) {
     return DEFAULT_SALE_END;
   });
 
+  const [showSoldOutWhenZero, setShowSoldOutWhenZero] = useState(() => {
+    try {
+      const saved = localStorage.getItem(SOLD_OUT_STORAGE_KEY);
+      return saved !== null ? JSON.parse(saved) : true;
+    } catch {}
+    return true;
+  });
+
   const [isAdmin, setIsAdmin] = useState(false);
 
   // Persist products whenever they change
@@ -50,6 +58,11 @@ export function ProductProvider({ children }) {
     try { localStorage.setItem(ADMIN_STORAGE_KEY, saleEndDate); } catch {}
   }, [saleEndDate]);
 
+  // Persist sold out setting
+  useEffect(() => {
+    try { localStorage.setItem(SOLD_OUT_STORAGE_KEY, JSON.stringify(showSoldOutWhenZero)); } catch {}
+  }, [showSoldOutWhenZero]);
+
   const updateProduct = (id, changes) => {
     setProducts(prev => prev.map(p => p.id === id ? { ...p, ...changes } : p));
   };
@@ -61,6 +74,7 @@ export function ProductProvider({ children }) {
   const resetToDefaults = () => {
     setProducts(SEED_PRODUCTS);
     setSaleEndDate(DEFAULT_SALE_END);
+    setShowSoldOutWhenZero(true);
   };
 
   return (
@@ -71,6 +85,8 @@ export function ProductProvider({ children }) {
       resetToDefaults,
       saleEndDate,
       setSaleEndDate,
+      showSoldOutWhenZero,
+      setShowSoldOutWhenZero,
       isAdmin,
       setIsAdmin,
     }}>

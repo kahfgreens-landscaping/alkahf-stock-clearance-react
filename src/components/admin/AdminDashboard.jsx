@@ -2,13 +2,23 @@ import { useState, useRef } from 'react';
 import {
   X, Save, RotateCcw, Download, ChevronUp, ChevronDown,
   ToggleLeft, ToggleRight, Calendar, Package, Tag,
-  CheckCircle2, AlertTriangle, Search
+  CheckCircle2, AlertTriangle, Search, Camera, Ban
 } from 'lucide-react';
 import { useProducts } from '../../context/ProductContext';
 import { SEED_PRODUCTS } from '../../data/products';
+import PhotoManagerModal from './PhotoManagerModal';
 
 export default function AdminDashboard({ onClose }) {
-  const { products, updateProduct, updateProducts, resetToDefaults, saleEndDate, setSaleEndDate } = useProducts();
+  const {
+    products,
+    updateProduct,
+    updateProducts,
+    resetToDefaults,
+    saleEndDate,
+    setSaleEndDate,
+    showSoldOutWhenZero,
+    setShowSoldOutWhenZero
+  } = useProducts();
 
   const [search, setSearch] = useState('');
   const [sortKey, setSortKey] = useState('id');
@@ -16,6 +26,7 @@ export default function AdminDashboard({ onClose }) {
   const [saved, setSaved] = useState(false);
   const [editing, setEditing] = useState({}); // { productId_field: value }
   const [localSaleEnd, setLocalSaleEnd] = useState(saleEndDate.slice(0, 16)); // datetime-local format
+  const [photoManagerProduct, setPhotoManagerProduct] = useState(null);
   const tableRef = useRef(null);
 
   // ── Helpers ─────────────────────────────────────
@@ -134,19 +145,44 @@ export default function AdminDashboard({ onClose }) {
           <SumCard label="Avg Discount" val={`${avgDiscount.toFixed(0)}%`} color="text-red-600" />
         </div>
 
-        {/* ── Sale End Date Setting ──────────────── */}
-        <div className="px-6 py-3 border-b border-gray-100 bg-amber-50 flex-shrink-0 flex flex-wrap items-center gap-4">
-          <div className="flex items-center gap-2">
-            <Calendar size={16} className="text-amber-600" />
-            <span className="text-sm font-bold text-amber-800">⏱ Sale End Date</span>
+        {/* ── Settings Bar: Sale End Date + Zero Quantity Sold Out Toggle ──────────────── */}
+        <div className="px-6 py-3 border-b border-gray-100 bg-amber-50/80 flex-shrink-0 flex flex-wrap items-center justify-between gap-4">
+          <div className="flex flex-wrap items-center gap-6">
+            {/* Sale End Date */}
+            <div className="flex items-center gap-2">
+              <Calendar size={16} className="text-amber-600" />
+              <span className="text-sm font-bold text-amber-900">⏱ Sale End Date:</span>
+              <input
+                type="datetime-local"
+                value={localSaleEnd}
+                onChange={e => setLocalSaleEnd(e.target.value)}
+                className="px-2.5 py-1 border border-amber-300 bg-white rounded-lg text-xs font-semibold text-gray-700 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-200"
+              />
+            </div>
+
+            {/* Zero Quantity Sold Out Option */}
+            <div className="flex items-center gap-2 border-l border-amber-200/80 pl-4">
+              <Ban size={15} className="text-red-500" />
+              <span className="text-xs sm:text-sm font-bold text-gray-800">Display Qty 0 as "SOLD OUT":</span>
+              <button
+                type="button"
+                onClick={() => setShowSoldOutWhenZero(!showSoldOutWhenZero)}
+                className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold transition-all shadow-xs ${
+                  showSoldOutWhenZero
+                    ? 'bg-red-600 text-white hover:bg-red-700'
+                    : 'bg-white border border-gray-300 text-gray-600 hover:bg-gray-50'
+                }`}
+                title="When enabled, products with quantity 0 show as SOLD OUT on product card"
+              >
+                {showSoldOutWhenZero ? <ToggleRight size={16} /> : <ToggleLeft size={16} />}
+                <span>{showSoldOutWhenZero ? 'Enabled (Sold Out)' : 'Disabled'}</span>
+              </button>
+            </div>
           </div>
-          <input
-            type="datetime-local"
-            value={localSaleEnd}
-            onChange={e => setLocalSaleEnd(e.target.value)}
-            className="px-3 py-1.5 border border-amber-300 bg-white rounded-lg text-sm font-medium text-gray-700 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-200"
-          />
-          <span className="text-xs text-amber-600">This controls the countdown timer shown on the storefront. Hit <strong>Save All</strong> to apply.</span>
+
+          <span className="text-[11px] text-amber-800/80 hidden xl:inline font-medium">
+            💡 Making quantity 0 on any item will show "SOLD OUT" badge and ribbon on the product card.
+          </span>
         </div>
 
         {/* ── Search + Instructions ───────────────── */}
@@ -175,6 +211,7 @@ export default function AdminDashboard({ onClose }) {
               <tr className="border-b border-gray-200">
                 <Th col="id" label="#" sortKey={sortKey} onClick={toggleSort}><SortIcon col="id" /></Th>
                 <Th col="visible" label="👁" sortKey={sortKey} onClick={toggleSort} center />
+                <th className="px-3 py-2.5 text-center text-gray-500 font-semibold text-[11px] uppercase tracking-wider">Photos</th>
                 <Th col="category" label="Category" sortKey={sortKey} onClick={toggleSort}><SortIcon col="category" /></Th>
                 <Th col="name" label="Product Name" sortKey={sortKey} onClick={toggleSort} wide><SortIcon col="name" /></Th>
                 <Th col="salePrice" label="Sale Price" sortKey={sortKey} onClick={toggleSort}><SortIcon col="salePrice" /></Th>
@@ -204,6 +241,24 @@ export default function AdminDashboard({ onClose }) {
                         title={p.visible ? 'Hide from storefront' : 'Show on storefront'}
                       >
                         {p.visible ? <ToggleRight size={20} /> : <ToggleLeft size={20} />}
+                      </button>
+                    </td>
+
+                    {/* Photos */}
+                    <td className="px-3 py-2.5 text-center whitespace-nowrap">
+                      <button
+                        type="button"
+                        onClick={() => setPhotoManagerProduct(p)}
+                        className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-bold transition-all border ${
+                          p.images?.length > 0
+                            ? 'bg-emerald-50 text-emerald-800 border-emerald-200 hover:bg-emerald-100 hover:border-emerald-300 shadow-xs'
+                            : 'bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100 hover:border-amber-300'
+                        }`}
+                        title="Click to manage or upload photos for this product"
+                      >
+                        <Camera size={13} className={p.images?.length > 0 ? 'text-emerald-600' : 'text-amber-500'} />
+                        <span>{p.images?.length || 0}</span>
+                        <span className="text-[10px] text-green-700 font-black">+</span>
                       </button>
                     </td>
 
@@ -253,15 +308,31 @@ export default function AdminDashboard({ onClose }) {
 
                     {/* Qty */}
                     <td className="px-3 py-2.5">
-                      <EditableCell
-                        val={getEditVal(p.id, 'qty', p.qty)}
-                        isEditing={`${p.id}_qty` in editing}
-                        onFocus={() => startEdit(p.id, 'qty', p.qty)}
-                        onChange={v => setEditing(prev => ({ ...prev, [`${p.id}_qty`]: v }))}
-                        onBlur={v => commitEdit(p.id, 'qty', v)}
-                        type="number"
-                        className={`font-semibold ${p.qty === 0 ? 'text-red-500' : p.qty <= 20 ? 'text-orange-500' : 'text-gray-700'}`}
-                      />
+                      <div className="flex items-center gap-1.5">
+                        <EditableCell
+                          val={getEditVal(p.id, 'qty', p.qty)}
+                          isEditing={`${p.id}_qty` in editing}
+                          onFocus={() => startEdit(p.id, 'qty', p.qty)}
+                          onChange={v => setEditing(prev => ({ ...prev, [`${p.id}_qty`]: v }))}
+                          onBlur={v => commitEdit(p.id, 'qty', v)}
+                          type="number"
+                          className={`font-semibold ${p.qty === 0 ? 'text-red-600 font-black' : p.qty <= 20 ? 'text-orange-500' : 'text-gray-700'}`}
+                        />
+                        {p.qty === 0 ? (
+                          <span className="text-[9px] font-black bg-red-100 text-red-600 px-1.5 py-0.5 rounded-full whitespace-nowrap">
+                            SOLD OUT
+                          </span>
+                        ) : (
+                          <button
+                            type="button"
+                            onClick={() => updateProduct(p.id, { qty: 0 })}
+                            className="text-[9px] px-1.5 py-0.5 rounded bg-gray-100 hover:bg-red-100 hover:text-red-700 text-gray-400 font-semibold whitespace-nowrap transition-colors"
+                            title="Mark as Sold Out (Set Qty to 0)"
+                          >
+                            Set 0
+                          </button>
+                        )}
+                      </div>
                     </td>
 
                     {/* Size */}
@@ -311,6 +382,17 @@ export default function AdminDashboard({ onClose }) {
           </button>
         </div>
       </div>
+
+      {/* ── Photo Manager Modal ──────────────────────── */}
+      {photoManagerProduct && (
+        <PhotoManagerModal
+          product={products.find(p => p.id === photoManagerProduct.id) || photoManagerProduct}
+          onClose={() => setPhotoManagerProduct(null)}
+          onUpdatePhotos={(id, newImages) => {
+            updateProduct(id, { images: newImages });
+          }}
+        />
+      )}
     </div>
   );
 }
