@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-24T10:18:22.232Z",
+  "updatedAt": "2026-09-25T08:27:53.764Z",
   "saleEndDate": "2026-10-30T23:59:00",
   "showSoldOutWhenZero": true,
   "products": [
@@ -493,7 +493,7 @@
     {
       "id": 27,
       "category": "Nursery Pots",
-      "name": "PB Ercole Pot 5L – Black",
+      "name": "Nursery Pot 5L – Black",
       "size": "5 L",
       "color": "Black",
       "weight": null,
