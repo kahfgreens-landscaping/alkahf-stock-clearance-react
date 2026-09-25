@@ -350,6 +350,23 @@
       "visible": true
     },
     {
+      "id": 77,
+      "category": "Irrigation",
+      "name": "1/2\" (13mm) uPVC ADAPTOR MALE THREAD AND BARBED",
+      "size": "1/2\" (13mm)",
+      "color": null,
+      "weight": null,
+      "material": "uPVC",
+      "qty": 11000,
+      "salePrice": 0.1,
+      "wasPrice": 0.35,
+      "images": [
+        "images/uPVC ADAPTOR MALE THREAD.jpg"
+      ],
+      "desc": "1/2\" (13mm) uPVC adaptor with male thread and barbed connection for irrigation piping systems.",
+      "visible": true
+    },
+    {
       "id": 20,
       "category": "Nursery Pots",
       "name": "Desch Plastic Pot 15cm 1.5L – Black (Pack 5)",

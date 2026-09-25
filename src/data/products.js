@@ -1,4 +1,4 @@
-// KAHF GREENS – All 76 clearance products seed data
+// KAHF GREENS – All 77 clearance products seed data
 export const SEED_PRODUCTS = [
   // ── Chain Lock Tie ───────────────────────────────
   { id: 1, category: "Chain Lock Tie", name: "Chain Lock Tie 2.5cm × 30m × 2.5mm HDPE", size: "2.5cm × 30m", color: null, weight: null, material: "HDPE", qty: 45, salePrice: 60, wasPrice: 150, images: ["images/Chain Lock 1.png", "images/Chain Lock 2.jpg", "images/Chain Lock 3.jpg"], desc: "Heavy-duty HDPE chain lock tie for securing plants, climbing frames and garden structures.", visible: true },
@@ -28,6 +28,7 @@ export const SEED_PRODUCTS = [
   { id: 17, category: "Irrigation", name: "Unispray Pop-Up Body 4\" with Check Valve", size: "4 inch", color: null, weight: null, material: null, qty: 800, salePrice: 7, wasPrice: 18, images: ["images/Unispray Pop-Up Body 4inch with Check Valve.avif"], desc: "Professional 4\" pop-up sprinkler body with built-in check valve.", visible: true },
   { id: 18, category: "Irrigation", name: "Fog Nozzle ½\"", size: "½ inch", color: null, weight: null, material: null, qty: 150, salePrice: 6, wasPrice: 15, images: ["images/Fog Nozzle ½ inch.jpeg"], desc: "Fine-mist fogging nozzle for humidity control and plant misting systems.", visible: true },
   { id: 19, category: "Irrigation", name: "Rain Nozzle ½\"", size: "½ inch", color: null, weight: null, material: null, qty: 299, salePrice: 6, wasPrice: 15, images: ["images/Rain Nozzle ½ inch.jpeg"], desc: "Rain-pattern irrigation nozzle for even water distribution.", visible: true },
+  { id: 77, category: "Irrigation", name: "1/2\" (13mm) uPVC ADAPTOR MALE THREAD AND BARBED", size: "1/2\" (13mm)", color: null, weight: null, material: "uPVC", qty: 11000, salePrice: 0.1, wasPrice: 0.35, images: ["images/uPVC ADAPTOR MALE THREAD.jpg"], desc: "1/2\" (13mm) uPVC adaptor with male thread and barbed connection for irrigation piping systems.", visible: true },
 
   // ── Nursery Pots ─────────────────────────────────
   { id: 20, category: "Nursery Pots", name: "Desch Plastic Pot 15cm 1.5L – Black (Pack 5)", size: "15 cm / 1.5 L", color: "Black", weight: null, material: null, qty: 4777, salePrice: 0.10, wasPrice: 0.40, images: ["images/11, 13, 15cm - Front.jpg", "images/11cm - 13cm -  15cm - pots.jpg"], desc: "Standard black nursery pot 1.5 litre. Lightweight and durable for propagation.", visible: true },
