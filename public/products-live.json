@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-25T08:27:53.764Z",
+  "updatedAt": "2026-09-30T06:01:37.868Z",
   "saleEndDate": "2026-10-30T23:59:00",
   "showSoldOutWhenZero": true,
   "products": [
@@ -12,7 +12,7 @@
       "color": null,
       "weight": null,
       "material": "HDPE",
-      "qty": 45,
+      "qty": 106,
       "salePrice": 60,
       "wasPrice": 150,
       "images": [
@@ -121,7 +121,7 @@
       "color": "Black & White Metal",
       "weight": null,
       "material": null,
-      "qty": 106,
+      "qty": 38,
       "salePrice": 12,
       "wasPrice": 30,
       "images": [
@@ -141,7 +141,7 @@
       "color": "Black & White Metal",
       "weight": null,
       "material": null,
-      "qty": 51,
+      "qty": 31,
       "salePrice": 14,
       "wasPrice": 35,
       "images": [
@@ -161,7 +161,7 @@
       "color": "Black Frame + White Chain",
       "weight": null,
       "material": null,
-      "qty": 148,
+      "qty": 8,
       "salePrice": 12,
       "wasPrice": 30,
       "images": [
@@ -179,7 +179,7 @@
       "color": "Black Frame + White Chain",
       "weight": null,
       "material": null,
-      "qty": 130,
+      "qty": 5,
       "salePrice": 14,
       "wasPrice": 35,
       "images": [
@@ -1054,7 +1054,7 @@
       "color": null,
       "weight": null,
       "material": null,
-      "qty": 2989,
+      "qty": 2689,
       "salePrice": 0.85,
       "wasPrice": 2.25,
       "images": [
@@ -1072,7 +1072,7 @@
       "color": null,
       "weight": null,
       "material": null,
-      "qty": 2985,
+      "qty": 2685,
       "salePrice": 1,
       "wasPrice": 2.5,
       "images": [
@@ -1090,7 +1090,7 @@
       "color": null,
       "weight": null,
       "material": null,
-      "qty": 450,
+      "qty": 0,
       "salePrice": 2.5,
       "wasPrice": 6,
       "images": [
