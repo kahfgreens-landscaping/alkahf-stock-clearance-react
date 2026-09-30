@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-30T06:01:37.868Z",
+  "updatedAt": "2026-09-30T06:04:29.476Z",
   "saleEndDate": "2026-10-30T23:59:00",
   "showSoldOutWhenZero": true,
   "products": [
@@ -671,7 +671,7 @@
       "color": "Green (E-PLA)",
       "weight": null,
       "material": null,
-      "qty": 302,
+      "qty": 0,
       "salePrice": 1,
       "wasPrice": 2.5,
       "images": [
@@ -688,7 +688,7 @@
       "color": "Anthracite",
       "weight": null,
       "material": null,
-      "qty": 352,
+      "qty": 0,
       "salePrice": 1,
       "wasPrice": 2.5,
       "images": [
@@ -983,7 +983,7 @@
       "color": "Terracotta",
       "weight": null,
       "material": null,
-      "qty": 598,
+      "qty": 298,
       "salePrice": 1.5,
       "wasPrice": 3.75,
       "images": [
@@ -1001,7 +1001,7 @@
       "color": "Anthracite",
       "weight": null,
       "material": null,
-      "qty": 656,
+      "qty": 156,
       "salePrice": 0.85,
       "wasPrice": 2.25,
       "images": [
