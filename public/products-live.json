@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-30T06:04:29.476Z",
+  "updatedAt": "2026-10-08T09:03:55.397Z",
   "saleEndDate": "2026-10-30T23:59:00",
   "showSoldOutWhenZero": true,
   "products": [
@@ -1001,7 +1001,7 @@
       "color": "Anthracite",
       "weight": null,
       "material": null,
-      "qty": 156,
+      "qty": 0,
       "salePrice": 0.85,
       "wasPrice": 2.25,
       "images": [
@@ -1318,7 +1318,7 @@
       "color": "White",
       "weight": null,
       "material": null,
-      "qty": 3575,
+      "qty": 900,
       "salePrice": 1.25,
       "wasPrice": 3.25,
       "images": [
