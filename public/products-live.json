@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-08T09:03:55.397Z",
+  "updatedAt": "2026-10-15T06:08:08.081Z",
   "saleEndDate": "2026-10-30T23:59:00",
   "showSoldOutWhenZero": true,
   "products": [
@@ -392,7 +392,7 @@
       "color": "Black",
       "weight": null,
       "material": null,
-      "qty": 500,
+      "qty": 0,
       "salePrice": 0.4,
       "wasPrice": 1,
       "images": [
@@ -409,7 +409,7 @@
       "color": "Black",
       "weight": null,
       "material": null,
-      "qty": 2650,
+      "qty": 0,
       "salePrice": 0.4,
       "wasPrice": 1,
       "images": [
@@ -444,7 +444,7 @@
       "color": "Black",
       "weight": null,
       "material": null,
-      "qty": 433,
+      "qty": 0,
       "salePrice": 0.4,
       "wasPrice": 1,
       "images": [
@@ -462,7 +462,7 @@
       "color": "Black",
       "weight": null,
       "material": null,
-      "qty": 1000,
+      "qty": 0,
       "salePrice": 0.4,
       "wasPrice": 1,
       "images": [
@@ -480,7 +480,7 @@
       "color": "Black",
       "weight": null,
       "material": null,
-      "qty": 316,
+      "qty": 0,
       "salePrice": 0.4,
       "wasPrice": 1,
       "images": [
@@ -567,7 +567,7 @@
       "color": "Black",
       "weight": null,
       "material": null,
-      "qty": 120,
+      "qty": 0,
       "salePrice": 5,
       "wasPrice": 12.5,
       "images": [
