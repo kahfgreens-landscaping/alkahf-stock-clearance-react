@@ -4,6 +4,20 @@ import { fetchLiveStoreData } from '../services/backendSync';
 
 const ProductContext = createContext(null);
 
+function sanitizeProduct(p) {
+  if (!p) return p;
+  let name = p.name;
+  let desc = p.desc;
+  if (typeof name === 'string' && name.includes('(Set 2)')) {
+    name = name.replace(/\s*\(Set 2\)/gi, '').trim();
+  }
+  if (typeof desc === 'string' && /set of 2/i.test(desc)) {
+    desc = desc.replace(/\.?\s*Set of 2\.?/gi, '').trim();
+    if (desc && !desc.endsWith('.')) desc += '.';
+  }
+  return { ...p, name, desc };
+}
+
 export function ProductProvider({ children }) {
   const [products, setProducts] = useState(() => {
     try {
@@ -13,23 +27,27 @@ export function ProductProvider({ children }) {
         const savedIds = new Set(parsed.map(p => p.id));
         const merged = parsed.map(p => {
           const seed = SEED_PRODUCTS.find(s => s.id === p.id);
-          if (!seed) return p;
+          if (!seed) return sanitizeProduct(p);
           const useImages = (!p.images || p.images.length === 0 || p.images.length < seed.images.length)
             ? seed.images
             : p.images;
-          return {
+          return sanitizeProduct({
             ...seed,
             ...p,
+            name: seed.name || sanitizeProduct(p).name,
+            desc: seed.desc || sanitizeProduct(p).desc,
             images: useImages,
-          };
+          });
         });
-        return [
+        const initialProducts = [
           ...merged,
           ...SEED_PRODUCTS.filter(p => !savedIds.has(p.id)),
-        ];
+        ].map(sanitizeProduct);
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(initialProducts)); } catch {}
+        return initialProducts;
       }
     } catch {}
-    return SEED_PRODUCTS;
+    return SEED_PRODUCTS.map(sanitizeProduct);
   });
 
   const [saleEndDate, setSaleEndDate] = useState(() => {
@@ -61,13 +79,16 @@ export function ProductProvider({ children }) {
         // Merge with seed metadata if any field is missing
         const liveProducts = liveData.products.map(p => {
           const seed = SEED_PRODUCTS.find(s => s.id === p.id);
-          if (!seed) return p;
-          const images = (p.images && p.images.length > 0) ? p.images : seed.images;
-          return {
+          const sanitizedP = sanitizeProduct(p);
+          if (!seed) return sanitizedP;
+          const images = (sanitizedP.images && sanitizedP.images.length > 0) ? sanitizedP.images : seed.images;
+          return sanitizeProduct({
             ...seed,
-            ...p,
+            ...sanitizedP,
+            name: seed.name || sanitizedP.name,
+            desc: seed.desc || sanitizedP.desc,
             images,
-          };
+          });
         });
 
         setProducts(liveProducts);

@@ -1,6 +1,6 @@
 {
-  "version": 1,
-  "updatedAt": "2026-10-15T06:08:08.081Z",
+  "version": 2,
+  "updatedAt": "2026-10-19T07:59:00.000Z",
   "saleEndDate": "2026-10-30T23:59:00",
   "showSoldOutWhenZero": true,
   "products": [
@@ -766,7 +766,7 @@
     {
       "id": 43,
       "category": "Other Desch Pots",
-      "name": "Desch Karina 23cm – Velvet Terracotta (Set 2)",
+      "name": "Desch Karina 23cm – Velvet Terracotta",
       "size": "23 cm",
       "color": "Velvet Terracotta",
       "weight": null,
@@ -778,13 +778,13 @@
         "images/Desch Plantpak Karina 23cm Velvet Terracotta Set of 2 Pieces 1.png",
         "images/Desch Plantpak Karina 23cm Velvet Terracotta Set of 2 Pieces 2.png"
       ],
-      "desc": "Stylish Karina planter in velvet terracotta. Set of 2.",
+      "desc": "Stylish Karina planter in velvet terracotta.",
       "visible": true
     },
     {
       "id": 44,
       "category": "Other Desch Pots",
-      "name": "Desch Karina 23cm – Terracotta (Set 2)",
+      "name": "Desch Karina 23cm – Terracotta",
       "size": "23 cm",
       "color": "Terracotta",
       "weight": null,
@@ -796,13 +796,13 @@
         "images/Desch Plantpak Karina 23cm Terracotta Set of 2 Pieces 1.png",
         "images/Desch Plantpak Karina 23cm Terracotta Set of 2 Pieces 2.png"
       ],
-      "desc": "Classic terracotta Karina planter. Set of 2.",
+      "desc": "Classic terracotta Karina planter.",
       "visible": true
     },
     {
       "id": 45,
       "category": "Other Desch Pots",
-      "name": "Desch Karina 23cm – White (Set 2)",
+      "name": "Desch Karina 23cm – White",
       "size": "23 cm",
       "color": "White",
       "weight": null,
@@ -814,7 +814,7 @@
         "images/Desch Plantpak Karina 23cm White Set of 2 Pieces 1.png",
         "images/Desch Plantpak Karina 23cm White Set of 2 Pieces 2.png"
       ],
-      "desc": "Clean white Karina planter. Set of 2.",
+      "desc": "Clean white Karina planter.",
       "visible": true
     },
     {
@@ -854,7 +854,7 @@
     {
       "id": 48,
       "category": "Other Desch Pots",
-      "name": "Desch Miranda 30cm – Velvet Terracotta (Set 2)",
+      "name": "Desch Miranda 30cm – Velvet Terracotta",
       "size": "30 cm",
       "color": "Velvet Terracotta",
       "weight": null,
@@ -866,13 +866,13 @@
         "images/Desch Plantpak Miranda 30cm Velvet Terracotta Set of 2 Pieces 1.png",
         "images/Desch Plantpak Miranda 30cm Velvet Terracotta Set of 2 Pieces 2.png"
       ],
-      "desc": "Generous 30cm Miranda planter in velvet terracotta. Set of 2.",
+      "desc": "Generous 30cm Miranda planter in velvet terracotta.",
       "visible": true
     },
     {
       "id": 49,
       "category": "Other Desch Pots",
-      "name": "Desch Miranda 30cm – Terracotta (Set 2)",
+      "name": "Desch Miranda 30cm – Terracotta",
       "size": "30 cm",
       "color": "Terracotta",
       "weight": null,
@@ -884,7 +884,7 @@
         "images/Desch Plantpak Miranda 30cm Terracotta Set of 2 Pieces 1.png",
         "images/Desch Plantpak Miranda 30cm Terracotta Set of 2 Pieces 2.png"
       ],
-      "desc": "Classic terracotta Miranda 30cm planter. Set of 2.",
+      "desc": "Classic terracotta Miranda 30cm planter.",
       "visible": true
     },
     {
@@ -924,7 +924,7 @@
     {
       "id": 52,
       "category": "Other Desch Pots",
-      "name": "Desch Sara 40cm – Brickstone Red (Set 2)",
+      "name": "Desch Sara 40cm – Brickstone Red",
       "size": "40 cm / 5 L",
       "color": "Brickstone Red",
       "weight": null,
@@ -936,13 +936,13 @@
         "images/Desch Plantpak Sara 40cm (5L) Plant Pot Brickstone Red Set of 2 Pieces 1.png",
         "images/Desch Plantpak Sara 40cm (5L) Plant Pot Brickstone Red Set of 2 Pieces 2.png"
       ],
-      "desc": "Large Sara 40cm 5L plant pot in brickstone red. Set of 2.",
+      "desc": "Large Sara 40cm 5L plant pot in brickstone red.",
       "visible": true
     },
     {
       "id": 53,
       "category": "Other Desch Pots",
-      "name": "Desch Sara 40cm – Dark Pink (Set 2)",
+      "name": "Desch Sara 40cm – Dark Pink",
       "size": "40 cm / 5 L",
       "color": "Dark Pink",
       "weight": null,
@@ -954,13 +954,13 @@
         "images/Desch Plantpak Sara 40cm (5L) Plant Pot Dark Pink Set of 2 Pieces 1.png",
         "images/Desch Plantpak Sara 40cm (5L) Plant Pot Dark Pink Set of 2 Pieces 2.png"
       ],
-      "desc": "Bold dark pink Sara 40cm 5L planter. Set of 2.",
+      "desc": "Bold dark pink Sara 40cm 5L planter.",
       "visible": true
     },
     {
       "id": 54,
       "category": "Other Desch Pots",
-      "name": "Desch Sara 40cm – Terracotta (Set 2)",
+      "name": "Desch Sara 40cm – Terracotta",
       "size": "40 cm / 5 L",
       "color": "Terracotta",
       "weight": null,
@@ -972,13 +972,13 @@
         "images/Desch Plantpak Sara 40cm (5L) Plant Pot Terracotta Set of 2 Pieces 1.png",
         "images/Desch Plantpak Sara 40cm (5L) Plant Pot Terracotta Set of 2 Pieces 2.png"
       ],
-      "desc": "Timeless terracotta Sara 40cm 5L planter. Set of 2.",
+      "desc": "Timeless terracotta Sara 40cm 5L planter.",
       "visible": true
     },
     {
       "id": 55,
       "category": "Other Desch Pots",
-      "name": "Desch Sonja 19cm – Terracotta (Set 2)",
+      "name": "Desch Sonja 19cm – Terracotta",
       "size": "19 cm",
       "color": "Terracotta",
       "weight": null,
@@ -990,7 +990,7 @@
         "images/Desch Plantpak Sonja 19cm Terracotta Set of 2 Pieces 1.png",
         "images/Desch Plantpak Sonja 19cm Terracotta Set of 2 Pieces 2.png"
       ],
-      "desc": "Compact Sonja 19cm planter in terracotta. Set of 2.",
+      "desc": "Compact Sonja 19cm planter in terracotta.",
       "visible": true
     },
     {
@@ -1013,7 +1013,7 @@
     {
       "id": 57,
       "category": "Other Desch Pots",
-      "name": "Desch Vera 21cm – Velvet Terracotta (Set 2)",
+      "name": "Desch Vera 21cm – Velvet Terracotta",
       "size": "21 cm",
       "color": "Velvet Terracotta",
       "weight": null,
@@ -1025,13 +1025,13 @@
         "images/Desch Plantpak Vera 21cm Velvet Terracotta Set of 2 Pieces 1.png",
         "images/Desch Plantpak Vera 21cm Velvet Terracotta Set of 2 Pieces 2.png"
       ],
-      "desc": "Vera 21cm planter in velvet terracotta. Set of 2.",
+      "desc": "Vera 21cm planter in velvet terracotta.",
       "visible": true
     },
     {
       "id": 58,
       "category": "Other Desch Pots",
-      "name": "Desch Vera 21cm – Terracotta (Set 2)",
+      "name": "Desch Vera 21cm – Terracotta",
       "size": "21 cm",
       "color": "Terracotta",
       "weight": null,
@@ -1043,7 +1043,7 @@
         "images/Desch Plantpak Vera 21cm Terracotta Set of 2 Pieces 1.png",
         "images/Desch Plantpak Vera 21cm Terracotta Set of 2 Pieces 2.png"
       ],
-      "desc": "Classic terracotta Vera 21cm planter. Set of 2.",
+      "desc": "Classic terracotta Vera 21cm planter.",
       "visible": true
     },
     {
