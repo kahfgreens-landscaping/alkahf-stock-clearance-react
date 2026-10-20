@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-20T05:48:24.613Z",
+  "updatedAt": "2026-10-20T11:17:36.690Z",
   "saleEndDate": "2026-10-30T23:59:00",
   "showSoldOutWhenZero": true,
   "products": [
@@ -121,7 +121,7 @@
       "color": "Black & White Metal",
       "weight": null,
       "material": null,
-      "qty": 38,
+      "qty": 0,
       "salePrice": 12,
       "wasPrice": 30,
       "images": [
@@ -141,7 +141,7 @@
       "color": "Black & White Metal",
       "weight": null,
       "material": null,
-      "qty": 31,
+      "qty": 0,
       "salePrice": 14,
       "wasPrice": 35,
       "images": [
@@ -161,7 +161,7 @@
       "color": "Black Frame + White Chain",
       "weight": null,
       "material": null,
-      "qty": 8,
+      "qty": 0,
       "salePrice": 12,
       "wasPrice": 30,
       "images": [
@@ -179,7 +179,7 @@
       "color": "Black Frame + White Chain",
       "weight": null,
       "material": null,
-      "qty": 5,
+      "qty": 0,
       "salePrice": 14,
       "wasPrice": 35,
       "images": [
@@ -498,7 +498,7 @@
       "color": "Black",
       "weight": null,
       "material": null,
-      "qty": 500,
+      "qty": 0,
       "salePrice": 0.5,
       "wasPrice": 1.25,
       "images": [
