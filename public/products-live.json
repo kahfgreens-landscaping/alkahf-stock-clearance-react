@@ -1,6 +1,6 @@
 {
-  "version": 2,
-  "updatedAt": "2026-10-19T07:59:00.000Z",
+  "version": 1,
+  "updatedAt": "2026-10-20T05:48:24.613Z",
   "saleEndDate": "2026-10-30T23:59:00",
   "showSoldOutWhenZero": true,
   "products": [
@@ -427,7 +427,7 @@
       "color": "Black",
       "weight": null,
       "material": null,
-      "qty": 700,
+      "qty": 0,
       "salePrice": 0.4,
       "wasPrice": 1,
       "images": [
@@ -493,7 +493,7 @@
     {
       "id": 27,
       "category": "Nursery Pots",
-      "name": "Nursery Pot 5L – Black",
+      "name": "PB Ercole Pot 5L – Black",
       "size": "5 L",
       "color": "Black",
       "weight": null,
@@ -516,7 +516,7 @@
       "color": "Black",
       "weight": null,
       "material": null,
-      "qty": 1000,
+      "qty": 0,
       "salePrice": 0.9,
       "wasPrice": 2.5,
       "images": [
@@ -825,7 +825,7 @@
       "color": "Graphite Gray",
       "weight": null,
       "material": null,
-      "qty": 256,
+      "qty": 0,
       "salePrice": 1.5,
       "wasPrice": 3.75,
       "images": [
@@ -842,7 +842,7 @@
       "color": "Terracotta",
       "weight": null,
       "material": null,
-      "qty": 21,
+      "qty": 0,
       "salePrice": 1.5,
       "wasPrice": 3.75,
       "images": [
@@ -895,7 +895,7 @@
       "color": "Anthracite",
       "weight": null,
       "material": null,
-      "qty": 345,
+      "qty": 0,
       "salePrice": 1,
       "wasPrice": 2.5,
       "images": [
@@ -912,7 +912,7 @@
       "color": "Velvet Terracotta",
       "weight": null,
       "material": null,
-      "qty": 213,
+      "qty": 0,
       "salePrice": 1,
       "wasPrice": 2.5,
       "images": [
@@ -1318,7 +1318,7 @@
       "color": "White",
       "weight": null,
       "material": null,
-      "qty": 900,
+      "qty": 0,
       "salePrice": 1.25,
       "wasPrice": 3.25,
       "images": [
