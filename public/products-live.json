@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-14T05:32:04.232Z",
+  "updatedAt": "2026-11-14T05:36:37.524Z",
   "saleEndDate": "2026-10-30T23:59:00",
   "showSoldOutWhenZero": true,
   "products": [
@@ -635,7 +635,7 @@
       "color": "Black",
       "weight": null,
       "material": null,
-      "qty": 1343,
+      "qty": 0,
       "salePrice": 0.75,
       "wasPrice": 2,
       "images": [
@@ -653,7 +653,7 @@
       "color": "White",
       "weight": null,
       "material": null,
-      "qty": 831,
+      "qty": 0,
       "salePrice": 0.75,
       "wasPrice": 2,
       "images": [
