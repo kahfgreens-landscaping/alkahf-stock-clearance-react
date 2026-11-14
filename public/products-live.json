@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-14T05:36:37.524Z",
+  "updatedAt": "2026-11-14T05:39:25.273Z",
   "saleEndDate": "2026-10-30T23:59:00",
   "showSoldOutWhenZero": true,
   "products": [
@@ -374,7 +374,7 @@
       "color": "Black",
       "weight": null,
       "material": null,
-      "qty": 4777,
+      "qty": 0,
       "salePrice": 0.1,
       "wasPrice": 0.4,
       "images": [
@@ -533,7 +533,7 @@
       "color": "Black",
       "weight": null,
       "material": null,
-      "qty": 1000,
+      "qty": 0,
       "salePrice": 1,
       "wasPrice": 2.5,
       "images": [
@@ -550,7 +550,7 @@
       "color": "Black",
       "weight": null,
       "material": null,
-      "qty": 75,
+      "qty": 0,
       "salePrice": 5,
       "wasPrice": 12.5,
       "images": [
@@ -601,7 +601,7 @@
       "color": "Black",
       "weight": null,
       "material": null,
-      "qty": 30,
+      "qty": 0,
       "salePrice": 9.5,
       "wasPrice": 24,
       "images": [
@@ -771,7 +771,7 @@
       "color": "Velvet Terracotta",
       "weight": null,
       "material": null,
-      "qty": 563,
+      "qty": 0,
       "salePrice": 0.85,
       "wasPrice": 2.25,
       "images": [
@@ -807,7 +807,7 @@
       "color": "White",
       "weight": null,
       "material": null,
-      "qty": 569,
+      "qty": 0,
       "salePrice": 0.85,
       "wasPrice": 2.25,
       "images": [
@@ -1107,7 +1107,7 @@
       "color": "Multi-color",
       "weight": "8 kg bag",
       "material": null,
-      "qty": 21,
+      "qty": 0,
       "salePrice": 10,
       "wasPrice": 25,
       "images": [
@@ -1125,7 +1125,7 @@
       "color": "Black",
       "weight": "8 kg bag",
       "material": null,
-      "qty": 4,
+      "qty": 0,
       "salePrice": 10,
       "wasPrice": 25,
       "images": [
@@ -1142,7 +1142,7 @@
       "color": "Granite",
       "weight": "8 kg bag",
       "material": null,
-      "qty": 15,
+      "qty": 0,
       "salePrice": 6,
       "wasPrice": 15,
       "images": [
@@ -1160,7 +1160,7 @@
       "color": "Granite",
       "weight": "8 kg bag",
       "material": null,
-      "qty": 3,
+      "qty": 0,
       "salePrice": 6,
       "wasPrice": 15,
       "images": [
@@ -1177,7 +1177,7 @@
       "color": "Pure White",
       "weight": "8 kg bag",
       "material": null,
-      "qty": 13,
+      "qty": 0,
       "salePrice": 6,
       "wasPrice": 15,
       "images": [
@@ -1194,7 +1194,7 @@
       "color": "Pink",
       "weight": "8 kg bag",
       "material": null,
-      "qty": 2,
+      "qty": 0,
       "salePrice": 11,
       "wasPrice": 28,
       "images": [
@@ -1211,7 +1211,7 @@
       "color": "White",
       "weight": null,
       "material": null,
-      "qty": 1820,
+      "qty": 0,
       "salePrice": 0.7,
       "wasPrice": 1.75,
       "images": [
