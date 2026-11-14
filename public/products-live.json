@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-14T05:40:48.735Z",
+  "updatedAt": "2026-11-14T05:50:14.043Z",
   "saleEndDate": "2026-10-30T23:59:00",
   "showSoldOutWhenZero": true,
   "products": [
@@ -1229,7 +1229,7 @@
       "color": "Brown",
       "weight": "5 kg bag",
       "material": null,
-      "qty": 14,
+      "qty": 0,
       "salePrice": 40,
       "wasPrice": 100,
       "images": [
@@ -1247,7 +1247,7 @@
       "color": "Green",
       "weight": "5 kg bag",
       "material": null,
-      "qty": 14,
+      "qty": 0,
       "salePrice": 40,
       "wasPrice": 100,
       "images": [
@@ -1265,7 +1265,7 @@
       "color": "Pool Blue",
       "weight": "5 kg bag",
       "material": null,
-      "qty": 14,
+      "qty": 0,
       "salePrice": 40,
       "wasPrice": 100,
       "images": [
@@ -1283,7 +1283,7 @@
       "color": "Mirror/Silver",
       "weight": "5 kg bag",
       "material": null,
-      "qty": 12,
+      "qty": 0,
       "salePrice": 40,
       "wasPrice": 100,
       "images": [
